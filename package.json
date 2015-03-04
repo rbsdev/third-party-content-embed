@@ -11,5 +11,6 @@
     "build-style": "node_modules/clean-css/bin/cleancss --output dist/main.css src/main.css",
     "build-template": "node_modules/html-minifier/cli.js --collapse-whitespace --lint --remove-comments --remove-comments-from-cdata --output dist/main.html src/main.html",
     "clean": "rm -f npm-debug.log; rm -fr dist/*"
-  }
+  },
+  "version": "0.0.0"
 }
