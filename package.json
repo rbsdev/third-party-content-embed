@@ -6,11 +6,12 @@
   },
   "private": true,
   "scripts": {
-    "build": "npm run clean; npm run build-script; npm run build-style; npm run build-template",
+    "build": "npm run clean; npm run tree; npm run build-script; npm run build-style; npm run build-template",
     "build-script": "node_modules/uglify-js/bin/uglifyjs src/main.js --compress --mangle --output dist/main.js",
     "build-style": "node_modules/clean-css/bin/cleancss --output dist/main.css src/main.css",
     "build-template": "node_modules/html-minifier/cli.js --collapse-whitespace --lint --remove-comments --remove-comments-from-cdata --output dist/main.html src/main.html",
-    "clean": "rm -f npm-debug.log; rm -fr dist/*"
+    "clean": "rm -f npm-debug.log; rm -fr dist",
+    "tree": "mkdir -p dist"
   },
   "version": "0.0.1"
 }
