@@ -21,7 +21,7 @@ Publish all the files within the `dist` project's folder, then add the following
 <iframe src="path/to/main.html?content=http%3A//example.com/&amp;width=800&amp;height=600"></iframe>
 ```
 
-Make sure this `iframe` has properly styles to be fluid, otherwise the magic won't happen.
+Make sure this `iframe` has proper styles to be fluid, otherwise the magic won't happen.
 
 ## Paramters
 
