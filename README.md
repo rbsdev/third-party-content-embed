@@ -17,7 +17,7 @@ npm run build
 
 Publish all the files within the `dist` project's folder, then add the following code wherever you want to embed something:
 
-```
+```html
 <iframe src="path/to/main.html?content=http%3A//example.com/&amp;width=800&amp;height=600"></iframe>
 ```
 
