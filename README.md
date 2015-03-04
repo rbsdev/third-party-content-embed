@@ -25,7 +25,7 @@ Make sure this `iframe` has proper styles to be fluid, otherwise the magic won't
 
 ## Paramters
 
-The `main.html` has the following query string paramters:
+The `main.html` has the following query string parameters:
 
 * `content` url that is intented to be embeded.
 * `width` the original width of the content.
