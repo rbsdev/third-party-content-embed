@@ -1,3 +1,6 @@
 {
-  "private": true
+  "private": true,
+  "scripts": {
+    "clean": "rm -fr dist/*"
+  }
 }
