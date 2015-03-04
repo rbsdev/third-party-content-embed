@@ -3,6 +3,7 @@
 
   var bind,
       debounce,
+      debug,
       embed,
       getParameter,
       main,
@@ -13,6 +14,8 @@
       size;
 
   bind = function() {
+    debug('bind');
+
     embed.addEventListener('load', show);
 
     window.addEventListener('orientationchange', debounce(resize));
@@ -30,23 +33,38 @@
 
   getParameter = function(name) {
     var pattern = new RegExp('.*(\\?|&)' + name + '=([^]*?)(&.*$|$)'),
-        query = window.location.search,
-        value = window.unescape(query.replace(pattern, '$2'));
+        query = window.location.search;
 
-    return value;
+    if (!pattern.test(query)) {
+      return undefined;
+    }
+
+    return window.unescape(query.replace(pattern, '$2'));
   };
 
   main = function() {
+    debug('main');
+
     setup();
     bind();
   };
 
   resize = function() {
+    debug('resize');
+
     var scale = +Math.min(1, document.body.clientWidth / size).toPrecision(5),
         transform;
 
     if (memory == scale) {
+      debug('resize', 'skipped, still the same scale');
+
       return;
+    }
+
+    if (memory) {
+      debug('resize', 'scale changed from ' + memory + ' to ' + scale);
+    } else {
+      debug('resize', 'scale set to ' + scale);
     }
 
     memory = scale;
@@ -58,9 +76,15 @@
   };
 
   setup = function() {
+    debug('setup');
+
     var content = getParameter('content'),
         height = +getParameter('height'),
         width = +getParameter('width');
+
+    debug('setup', 'content', content);
+    debug('setup', 'height', height);
+    debug('setup', 'width', width);
 
     if (!content) {
       throw 'third party content embed called without any url to load';
@@ -84,14 +108,27 @@
 
     document.body.insertBefore(embed, document.body.firstElementChild);
     document.body.setAttribute('class', 'loading');
+
+    debug('setup', 'embed element created');
   };
 
   show = function() {
+    debug('show');
     resize();
 
     document.body.setAttribute('class', 'loaded');
     embed.removeAttribute('class');
   };
+
+  debug = (function() {
+    if (getParameter('debug') != 'true') {
+      return function() { };
+    }
+
+    return function(signature) {
+      console.debug.apply(console, ['third-party-content-embed::' + signature].concat([ ].slice.call(arguments, 1)));
+    };
+  })();
 
   document.addEventListener('DOMContentLoaded', main);
 }();
