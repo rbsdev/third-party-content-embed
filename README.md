@@ -30,3 +30,4 @@ The `main.html` has the following query string parameters:
 * `content` url that is intented to be embeded.
 * `width` the original width of the content.
 * `height` the original height of the content, make sure to also set the same height in the `iframe`.
+* `debug` set to true to see useful messages in the console.
