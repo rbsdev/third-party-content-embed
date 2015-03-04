@@ -1,11 +1,13 @@
 {
   "devDependencies": {
-    "html-minifier": "^0.7.0"
+    "html-minifier": "^0.7.0",
+    "uglify-js": "^2.4.16"
   },
   "private": true,
   "scripts": {
-    "build": "npm run build-template",
-    "build-template": "node_modules/html-minifier/cli.js --collapse-whitespace --lint --remove-comments --remove-comments-from-cdata -o dist/main.html src/main.html",
-    "clean": "rm -fr dist/*"
+    "build": "npm run clean; npm run build-script; npm run build-template",
+    "build-script": "node_modules/uglify-js/bin/uglifyjs src/main.js --compress --mangle --output dist/main.js",
+    "build-template": "node_modules/html-minifier/cli.js --collapse-whitespace --lint --remove-comments --remove-comments-from-cdata --output dist/main.html src/main.html",
+    "clean": "rm -f npm-debug.log; rm -fr dist/*"
   }
 }
