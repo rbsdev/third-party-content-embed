@@ -2,7 +2,7 @@
 
 Simple workaround to embed third party content inside articles, keeping everything neat and tidy! or in other words, ~~responsive~~ fluid.
 
-It works as a proxy, creating a layer that will resize the content if needed to fit everything inside the available width. All modern browsers are supoorted and Internet Explorer 9+.
+It works as a proxy, creating a layer that will resize the content if needed to fit everything inside the available width. All modern browsers are supported and Internet Explorer 9+.
 
 ## How to build
 
