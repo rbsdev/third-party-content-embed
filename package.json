@@ -18,5 +18,5 @@
     "version": "git describe --abbrev=0",
     "watch": "node_modules/vigilia/bin/vigilia 'src/*':'npm run build'"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
