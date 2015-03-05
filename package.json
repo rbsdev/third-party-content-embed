@@ -11,7 +11,7 @@
     "build-script": "node_modules/uglify-js/bin/uglifyjs src/main.js --compress --mangle --output dist/main.js",
     "build-style": "node_modules/clean-css/bin/cleancss --output dist/main.css src/main.css",
     "build-rename": "export VERSION=`npm run version | tail -n 1`; mv dist/main.css \"dist/tpce-${VERSION}.css\"; mv dist/main.js \"dist/tpce-${VERSION}.js\"; mv dist/main.html \"dist/tpce-${VERSION}.html\"",
-    "build-replace": "export VERSION=`npm run version | tail -n 1`; sed -i \"\" \"s/{{VERSION}}/${VERSION}/g\" \"dist/tpce-${VERSION}.html\"; sed -E -i \"\" \"s/tpce\\-v[0-9]+\\.[0-9]+\\.[0-9]+\\.html/tpce-${VERSION}.html/g\" README.md",
+    "build-replace": "export VERSION=`npm run version | tail -n 1`; sed -i \"\" \"s/{{VERSION}}/${VERSION}/g\" \"dist/tpce-${VERSION}.html\"; sed -E -i \"\" \"s/tpce\\-v[0-9]+\\.[0-9]+\\.[0-9]+\\.html/tpce-${VERSION}.html/g\" README.md test/desktop.html test/mobile.html",
     "build-template": "node_modules/html-minifier/cli.js --collapse-whitespace --lint --remove-comments --remove-comments-from-cdata --output dist/main.html src/main.html",
     "clean": "rm -f npm-debug.log; rm -fr dist",
     "tree": "mkdir -p dist",
