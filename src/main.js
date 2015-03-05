@@ -27,7 +27,7 @@
 
     return function() {
       window.clearTimeout(timeoutId);
-      timeoutId = window.setTimeout(action, 100);
+      timeoutId = window.setTimeout.apply(window, [action, 1000].concat([ ].slice.call(arguments)));
     };
   };
 
@@ -50,10 +50,11 @@
   };
 
   resize = function() {
-    debug('resize');
-
     var scale = +Math.min(1, document.body.clientWidth / size).toPrecision(5),
         transform;
+
+    debug('resize', arguments[0] ? 'triggered by ' + arguments[0].type : 'standalone call');
+    debug('resize', 'available width', document.body.clientWidth);
 
     if (memory == scale) {
       debug('resize', 'skipped, still the same scale');
@@ -76,8 +77,6 @@
   };
 
   setup = function() {
-    debug('setup');
-
     var content = getParameter('content'),
         height = +getParameter('height'),
         width = +getParameter('width');
@@ -107,7 +106,7 @@
 
     document.body.insertBefore(embed, document.body.firstElementChild);
 
-    debug('setup', 'embed element created');
+    debug('setup', 'embed element created and inserted');
     resize();
   };
 
