@@ -104,20 +104,11 @@
     embed.setAttribute('src', content);
     embed.setAttribute('width', width);
     embed.setAttribute('height', height);
-    embed.setAttribute('class', 'invisible');
 
     document.body.insertBefore(embed, document.body.firstElementChild);
-    document.body.setAttribute('class', 'loading');
 
     debug('setup', 'embed element created');
-  };
-
-  show = function() {
-    debug('show');
     resize();
-
-    document.body.setAttribute('class', 'loaded');
-    embed.removeAttribute('class');
   };
 
   debug = (function() {
