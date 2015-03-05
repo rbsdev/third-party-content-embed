@@ -4,15 +4,6 @@ Simple workaround to embed third party content inside articles, keeping everythi
 
 It works as a proxy, creating a layer that will resize the content if needed to fit everything inside the available width. All modern browsers are supported and Internet Explorer 9+.
 
-## How to build
-
-With [Node.js](http://nodejs.org/) installed run the following commands from the cloned project folder:
-
-```sh
-npm install
-npm run build
-```
-
 ## How to use
 
 Publish all the files within the `dist` project's folder, then add the following code wherever you want to embed something:
