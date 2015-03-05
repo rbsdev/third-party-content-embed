@@ -2,7 +2,8 @@
   "devDependencies": {
     "clean-css": "^3.1.4",
     "html-minifier": "^0.7.0",
-    "uglify-js": "^2.4.16"
+    "uglify-js": "^2.4.16",
+    "vigilia": "^0.1.0"
   },
   "private": true,
   "scripts": {
@@ -14,7 +15,8 @@
     "build-template": "node_modules/html-minifier/cli.js --collapse-whitespace --lint --remove-comments --remove-comments-from-cdata --output dist/main.html src/main.html",
     "clean": "rm -f npm-debug.log; rm -fr dist",
     "tree": "mkdir -p dist",
-    "version": "git describe --abbrev=0"
+    "version": "git describe --abbrev=0",
+    "watch": "node_modules/vigilia/bin/vigilia 'src/*':'npm run build'"
   },
   "version": "0.0.1"
 }
