@@ -79,7 +79,8 @@
   setup = function() {
     var content = getParameter('content'),
         height = +getParameter('height'),
-        width = +getParameter('width');
+        width = +getParameter('width'),
+		scrolling = +getParameter('scrolling');
 
     debug('setup', 'content', content);
     debug('setup', 'height', height);
@@ -103,6 +104,9 @@
     embed.setAttribute('src', content);
     embed.setAttribute('width', width);
     embed.setAttribute('height', height);
+    if (scrolling) {
+		embed.setAttribute('scrolling', scrolling);
+	}
 
     document.body.insertBefore(embed, document.body.firstElementChild);
 
@@ -112,7 +116,7 @@
 
   debug = (function() {
     if (getParameter('debug') != 'true') {
-      return function() { };
+    	return function() {};
     }
 
     return function(signature) {
