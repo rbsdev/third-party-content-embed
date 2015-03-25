@@ -103,6 +103,8 @@
     embed.setAttribute('src', content);
     embed.setAttribute('width', width);
     embed.setAttribute('height', height);
+    embed.setAttribute('scrolling', 'no');
+    embed.setAttribute('frameborder', '0');
 
     document.body.insertBefore(embed, document.body.firstElementChild);
 
