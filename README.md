@@ -19,6 +19,7 @@ Make sure this `iframe` has proper styles to be fluid, otherwise the magic won't
 The `tpce-v0.0.5.html` has the following query string parameters:
 
 * `content` url that is intented to be embeded.
+* `scrolling` either `auto`, `no` or `yes`. default is `no`.
 * `width` the original width of the content.
 * `height` the original height of the content, make sure to also set the same height in the `iframe`.
 * `debug` set to true to see useful messages in the console.
