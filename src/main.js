@@ -77,12 +77,18 @@
   };
 
   setup = function() {
+    
+    var referrer = (document.referrer || document.location.href);
+    
     var content = getParameter('content'),
+        scrolling = getParameter('scrolling') || 'no',
         height = +getParameter('height'),
         width = +getParameter('width');
-
+        
     debug('setup', 'content', content);
+    debug('setup', 'referrer', referrer);
     debug('setup', 'height', height);
+    debug('setup', 'scrolling', scrolling);
     debug('setup', 'width', width);
 
     if (!content) {
@@ -100,11 +106,11 @@
     embed = document.createElement('iframe');
     size = width;
 
-    embed.setAttribute('src', content);
+    embed.setAttribute('src', content + '?referrer=' + encodeURI(referrer));
     embed.setAttribute('width', width);
     embed.setAttribute('height', height);
-    embed.setAttribute('scrolling', 'no');
-    embed.setAttribute('frameborder', '0');
+    embed.setAttribute('scrolling', scrolling);
+    embed.setAttribute('frameborder', 0);
 
     document.body.insertBefore(embed, document.body.firstElementChild);
 
