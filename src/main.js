@@ -11,7 +11,62 @@
       resize,
       setup,
       show,
-      size;
+      size, 
+      parseSearch;
+      
+      
+      
+  var TPCE_ARGS =   [
+    'width', 
+    'height', 
+    'scrolling'
+  ];
+      
+      
+      
+  parseSearch   =   function ()
+  {
+  
+    var search  = window.location.search;
+        search  =   search.split(/[?&]/);
+        
+    var data = {};
+    
+    search.forEach(function (value, index)
+    {
+        var tuple   =   value.split('=');
+        
+        if (tuple.length == 1) {
+            return;
+        }
+        
+        data[tuple[0]] = tuple[1];
+    });
+    
+    TPCE_ARGS.forEach(function (attr)
+    {
+        if (data[attr]) {
+            delete(data[attr])
+        }
+    });
+    
+    search = [    data.content    ];
+    
+    for (var i in data) {
+        if (i == 'content') {
+            continue;
+        }
+        
+        search.push(i + '=' + data[i]);
+    }
+    
+    search  =   search.join('&');
+    search  =   search.replace('&', '?');
+    search  =   search.replace(/%3A/i, ':');
+    
+    return (search);
+  
+  };
 
   bind = function() {
     debug('bind');
@@ -76,15 +131,18 @@
     embed.style.transform = transform;
   };
 
-  setup = function() {
+  setup = function() 
+  {
     
-    var referrer = (document.referrer || document.location.href);
-    
-    var content = getParameter('content'),
-        scrolling = getParameter('scrolling') || 'no',
-        height = +getParameter('height'),
-        width = +getParameter('width');
-        
+    var referrer    =   (document.referrer || document.location.href), 
+        hash        =   window.location.hash, 
+        hash        =   (((hash.charAt(0) == '#') || (! hash.length)) ? (hash) : ('#' + hash)), 
+        content     =   parseSearch(),
+        scrolling   =   (getParameter('scrolling') || 'no'),
+        height      =   +getParameter('height'),
+        width       =   +getParameter('width');
+
+    debug('setup', 'hash', content + hash);
     debug('setup', 'content', content);
     debug('setup', 'referrer', referrer);
     debug('setup', 'height', height);
@@ -106,7 +164,7 @@
     embed = document.createElement('iframe');
     size = width;
 
-    embed.setAttribute('src', content + '?referrer=' + encodeURI(referrer));
+    embed.setAttribute('src', content + hash);
     embed.setAttribute('width', width);
     embed.setAttribute('height', height);
     embed.setAttribute('scrolling', scrolling);
@@ -119,7 +177,7 @@
   };
 
   debug = (function() {
-    if (getParameter('debug') != 'true') {
+    if (getParameter('debug') == 'true') {
       return function() { };
     }
 
